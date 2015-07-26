@@ -26,7 +26,6 @@ var help = false;
 	// Global variables and datastores:
 
 
-  //var api_url="http://213.108.108.94:8000";
   //var api_url="http://127.0.0.1:8000";
 	var api_url ="";
 
@@ -384,7 +383,18 @@ var help = false;
 
 		// handles when the map is clicked on, to get the country and handle the logic.
 		$('#container1').click(function(){
-			
+
+			var selectedcountry = getClickedCountry();
+			// getSelectedCountry();
+
+			currently_selected_media = []
+
+			selectCountry(selectedcountry);
+			if(help){
+				tour.cancel();
+			}
+
+			/*
 			if(currently_selected_country == null){
 				var selectedcountry = getSelectedCountry();
 				
@@ -394,8 +404,6 @@ var help = false;
 				if(help){
 					tour.cancel();
 				}
-				
-				
 			}else{
 				var clickedcountry = getClickedCountry();
 				info_pane_data.companies = clickedcountry.servers;
@@ -409,11 +417,11 @@ var help = false;
 					tour.cancel();
 				}
 			}
+			*/
 
 		});
 		
-		
-		
+
 		function selectCountry(selectedcountry){
 				currently_selected_country = selectedcountry;
 
@@ -423,6 +431,7 @@ var help = false;
 
 				countrypane.renderpane();
 
+				console.log(selectedcountry);
 				if(selectedcountry.enabled){
 					// renderMedia is passed as a callack function.
 					// this gets the media from the api, then sends that data to the callback 

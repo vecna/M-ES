@@ -45,10 +45,14 @@
 	var allcompanies=[];
 
 	function getSelectedCountry(){
+		console.log('x');
+		console.log(selected_country);
 		return selected_country;
 	}
 	
 	function getClickedCountry(){
+		console.log('y');
+		console.log(clicked_country);
 		return clicked_country;
 	}
 	

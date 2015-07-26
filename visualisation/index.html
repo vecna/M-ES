@@ -2,19 +2,19 @@
 <head>
 	<meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="description" content="Trackography is our open source project which illustrates which companies track us when we read the news online, as well as where our data travels to everytime we access a media website within a period of time.">
+	<meta name="description" content="Special project forked by trackography visualisation.">
   <meta name="viewport" content="width=device-width">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@info_activism">
   <meta name="twitter:creator" content="@info_activism">
-  <meta property="og:title" content="Trackography - which companies track us when we read the news online?">
-  <meta property="og:description" content="Trackography is our open source project which illustrates which companies track us when we read the news online, as well as where our data travels to everytime we access a media website within a period of time. ">
+  <meta property="og:title" content="Special project forked by trackography.org viz">
+  <meta property="og:description" content="TODO">
   <meta property="og:image" content="img/example_image.jpg">
 	<meta name='twitter:image' content='img/example_image.jpg'>
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
 	
-	<title>Trackography - Who tracks you online?</title>
+	<title>Special project XYZ</title>
 
 	<!-- Scripts -->
 	<script src="js/utils/jquery.js"></script>
@@ -127,11 +127,10 @@
 					<div class="medialist">
 						<% _.each(global, function(media) { %>
 
-						<hr>
+						<div class="linehr"> <%= media.category %> </div>
+
 						<% if (media.target)  { %>
 						<div class="target">
-							<b>Target:</b>
-							<br>
 							<%= media.target %>
 						</div>
 						<% } else { %>
@@ -141,7 +140,7 @@
 							<%= media.revelations %>
 						</div>
 						<div class="link">
-							<a href="<%= media.sources %>">link</a>
+							<a href="<%= media.sources %>" target="_blank">link</a>
 						</div>
 						<div class="media animated flipInX">
 							<b>Target:</b>
@@ -149,6 +148,7 @@
 							<br>
 							<b>Attack type:</b>
 							<%= media.type %>
+							<br>
 							<b>Why ?</b>
 							<br>
 							<%= media.why %>
@@ -166,11 +166,10 @@
 					<div class="medialist">
 						<% _.each(national, function(media) { %>
 
-						<hr>
+						<div class="linehr"> <%= media.category %> </div>
+
 						<% if (media.target)  { %>
 						<div class="target">
-							<b>Target:</b>
-							<br>
 							<%= media.target %>
 						</div>
 						<% } else { %>
@@ -181,14 +180,15 @@
 							<%= media.revelations %>
 						</div>
 						<div class="link">
-							<a href="<%= media.sources %>">link</a>
+							<a href="<%= media.sources %>" target="_blank">link</a>
 						</div>
 						<div class="media animated flipInX">
-                                <b>Target:</b>
-                                <%= media.target %>
-                                <br>
-                                <b>Attack type:</b>
+                            <b>Target:</b>
+                            <%= media.target %>
+                            <br>
+                            <b>Attack type:</b>
 							<%= media.type %>
+							<br>
 							<b>Why ?</b>
 							<br>
 							<%= media.why %>
@@ -206,12 +206,13 @@
 					<div class="medialist">
 						<% _.each(local, function(media) { %>
 
-						<hr>
+						<div class="linehr"> <%= media.category %> </div>
+
 						<div id="media-<%= media.id %>" class = "media" data-id = "<%= media.id %>">
 							<%= media.revelations %>
 						</div>
 						<div class="link">
-							<a href="<%= media.sources %>">link</a>
+							<a href="<%= media.sources %>" target="_blank">link</a>
 						</div>
 						<div class="media animated flipInX">
 							<b>Target:</b>
@@ -219,6 +220,7 @@
 							<br>
 							<b>Attack type:</b>
 							<%= media.type %>
+							<br>
 							<b>Why ?</b>
 							<br>
 							<%= media.why %>
@@ -422,7 +424,6 @@
 				<%
 				var companytotal = 0;
 				_.each(media_list, function(media) { %>
-					<hr>
 					<div class = "mediaa animated flipInX" data-id = "<%= media.id %>">
 					 <h2><%= media.url.replace(/^www./,'') %></h2>
 					 <table>

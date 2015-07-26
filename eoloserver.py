@@ -278,7 +278,6 @@ class DataSource(object):
 class CountriesList(EoloHandler, DataSource):
 
     def get(self):
-        print "to be sure", len(DataSource.country_list)
         self.finish(DataSource.country_list)
 
 class CompaniesList(EoloHandler, DataSource):
@@ -292,6 +291,7 @@ class AssociatedDocuments(EoloHandler, DataSource):
         # print three_lc, detail
 
         retlist = []
+        print "to be sure", len(DataSource.country_list)
         for docinfo in DataSource.immutable_source:
             if three_lc in docinfo['Countries']:
                 retlist.append(docinfo)

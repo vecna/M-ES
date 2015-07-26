@@ -368,7 +368,21 @@ opacity:1;
 	margin-bottom: 1%;
 	cursor: pointer;
 	padding: 1%;
+	font-weight: 700;
+	font-size: 1.4em;
 	color: #6c1619;
+}
+
+.linehr {
+	width: 96%;
+	height: 1em;
+	background-color: whitesmoke;
+	font-size: 50%;
+	clear: both;
+	text-align: center;
+	border-top: 1px solid blue;
+	border-top-right-radius: .6em;
+	border-top-left-radius: .6em;
 }
 
 .mediatext {
