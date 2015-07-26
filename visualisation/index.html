@@ -112,25 +112,31 @@
 					return media.category == 'Spying on Political Leaders';
 				});
 				var local = _.filter(medialist, function(media) {
-					return media.type == 'local';
+					return media.category == 'Collaborations';
 				});
+				/*
 				var blogs = _.filter(medialist, function(media) {
 					return media.type == 'blog';
 				});
+				*/
 				%>
 
 
-
 				<div class="mediablock">
-					<h3 class="openfirst"> Political Espionage released so far: <%= global.length %></h3>
+					<h3 class="openfirst"> Spying on Corporations [#<%= global.length %>]</h3>
 					<div class="medialist">
 						<% _.each(global, function(media) { %>
 
+						<hr>
+						<% if (media.target)  { %>
 						<div class="target">
 							<b>Target:</b>
 							<br>
 							<%= media.target %>
 						</div>
+						<% } else { %>
+						<i>"nop!"</i>
+						<% } %>
 						<div id="media-<%= media.id %>" class = "media" data-id = "<%= media.id %>">
 							<%= media.revelations %>
 						</div>
@@ -155,17 +161,52 @@
 	      		</div>
 
 
-
 				<div class="mediablock">
-					<h3 class="openfirst"> Political Espionage released so far: <%= global.length %></h3>
+					<h3 class="openfirst"> Spying on Political Leaders [#<%= national.length %>]</h3>
 					<div class="medialist">
 						<% _.each(national, function(media) { %>
 
+						<hr>
+						<% if (media.target)  { %>
 						<div class="target">
 							<b>Target:</b>
 							<br>
 							<%= media.target %>
 						</div>
+						<% } else { %>
+						<i>"nop!"</i>
+						<% } %>
+
+						<div id="media-<%= media.id %>" class = "media" data-id = "<%= media.id %>">
+							<%= media.revelations %>
+						</div>
+						<div class="link">
+							<a href="<%= media.sources %>">link</a>
+						</div>
+						<div class="media animated flipInX">
+                                <b>Target:</b>
+                                <%= media.target %>
+                                <br>
+                                <b>Attack type:</b>
+							<%= media.type %>
+							<b>Why ?</b>
+							<br>
+							<%= media.why %>
+							<br>
+							<b>Intellicence agencies:</b>
+							<%= media.ia %>
+						</div>
+						<% }); %>
+					</div>
+				</div>
+
+
+				<div class="mediablock">
+					<h3 class="openfirst"> Collaborations between I.A. and Corp [#<%= local.length %>]</h3>
+					<div class="medialist">
+						<% _.each(local, function(media) { %>
+
+						<hr>
 						<div id="media-<%= media.id %>" class = "media" data-id = "<%= media.id %>">
 							<%= media.revelations %>
 						</div>
@@ -188,6 +229,7 @@
 						<% }); %>
 					</div>
 				</div>
+
 
 			</div>
 		</div>	

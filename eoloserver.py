@@ -97,7 +97,7 @@ class Freegeoip(object):
         if name == 'Solomon islands':
             return 'SOL'
 
-        if name == 'U.S.':
+        if name == 'U.S.' or name == 'US':
             return 'USA'
 
         try:
@@ -210,27 +210,30 @@ class DataSource(object):
 
 
     @classmethod
-    def interpret_validate_csv(cls, keyword, line, i):
+    def interpret_validate_csv(cls, keyword, line, i, category):
 
         clean_keyword = SnowdenSource(keyword)
+        print colored("%s %s %s" % (keyword, i, category), 'blue', 'on_yellow' )
 
-        if clean_keyword == 'Countries':
-            countries_list = line[i].split(',')
-            three_letter_code_list = []
-            for c in countries_list:
-                print "[%s]" % c
-                country_3lc = Freegeoip.name_to_country_3lc(c)
-                if not country_3lc:
-                    print "Global/None spotted: continue :P"
-                    continue
-                if not country_3lc in DataSource.country_list:
-                    DataSource.country_list.append(country_3lc)
-                if not country_3lc in three_letter_code_list:
-                    three_letter_code_list.append(country_3lc)
-
-            return clean_keyword, three_letter_code_list
-        else:
+        if clean_keyword != 'Countries':
             return clean_keyword, line[i]
+
+        # it is 'Countries', split in three letter code
+        countries_list = line[i].split(',')
+        three_letter_code_list = []
+        for c in countries_list:
+            print "[%s]" % c
+            country_3lc = Freegeoip.name_to_country_3lc(c)
+            if not country_3lc:
+                print "Global/None spotted: continue :P"
+                continue
+            if not country_3lc in DataSource.country_list:
+                DataSource.country_list.append(country_3lc)
+            if not country_3lc in three_letter_code_list:
+                three_letter_code_list.append(country_3lc)
+
+        return clean_keyword, three_letter_code_list
+
 
 
     def __init__(self):
@@ -238,6 +241,7 @@ class DataSource(object):
         id_number_matrix = {
             'Spying on Political Leaders' : '1',
             'Spying on Corporations' : '2',
+            'Collaborations' : '3',
         }
         if not DataSource.immutable_source:
 
@@ -261,10 +265,10 @@ class DataSource(object):
                         })
                         for i, k in enumerate(keywords):
 
-                            clean_keyword, content = DataSource.interpret_validate_csv(k, line, i)
+                            clean_keyword, content = DataSource.interpret_validate_csv(k, line, i, fname)
                             mydict.update({clean_keyword : content})
 
-                        mydict.update({'category':fname})
+                        mydict.update({'category' : fname})
                         DataSource.immutable_source.append(mydict)
 
             assert len(DataSource.immutable_source), "Error in loading the stuff above"
