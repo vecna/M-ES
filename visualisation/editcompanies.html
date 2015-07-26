@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="It's sunday">
+    <meta name="viewport" content="width=device-width">
+    <meta property="og:title" content="It's sunday">
+    <meta property="og:description" content="Sunday!">
+
+    <title>It's Sunday!</title>
+
+    <!-- Scripts -->
+    <!-- <script src="jquery.min.js"></script> -->
+    <script src="js/utils/jquery.js"></script>
+
+    <style>
+        #container {
+            font-family: 'Lucida Grande', 'Lucida Sans Unicode', arial, sans-serif;
+        }
+        .entry {
+            background-color: #efffef;
+            padding: 15px;
+        }
+        .revlink {
+            font-size: 0.7em;
+            text-align: right;
+            padding-left: 3px;
+        }
+        .textname {
+            background-color: #ffeded;
+            text-align: right;
+            position: absolute;
+            width: 190px;
+        }
+        .editname {
+            background-color: white;
+            width: 70%;
+            position: absolute;
+            left: 230px;
+        }
+        .editbox {
+            left: 230px;
+            background-color: wheat;
+            position: absolute;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+
+
+        String.prototype.hash = function() {
+            var self = this, range = Array(this.length);
+            for(var i = 0; i < this.length; i++) {
+                range[i] = i;
+            }
+            return Array.prototype.map.call(range, function(i) {
+                return self.charCodeAt(i).toString(16);
+            }).join('');
+        };
+
+        function append_text_editor(motherdiv, title, content) {
+
+            br = document.createElement('br');
+            $(br).appendTo(motherdiv);
+
+            nameof = document.createElement('span');
+            $(nameof)
+                    .text(title)
+                    .addClass('textname')
+                    .appendTo(motherdiv);
+
+            if (content == undefined) {
+                content = 'N/A';
+            }
+            edittext = document.createElement('input');
+            $(edittext)
+                    .attr('id', title.hash() + '_' + content.hash() )
+                    .attr('value', content)
+                    .attr('type', 'text')
+                    .addClass('editname')
+                    .appendTo(motherdiv);
+        }
+
+        function append_boolean_editor(motherdiv, title, value) {
+
+            br = document.createElement('br');
+            $(br).appendTo(motherdiv);
+            nameof = document.createElement('span');
+            $(nameof)
+                    .text(title)
+                    .addClass('textname')
+                    .appendTo(motherdiv);
+
+            editbox = document.createElement('input');
+            if (value == true) {
+                $(editbox).prop('checked', true);
+            }
+            $(editbox)
+                /* REMIND TODO you can't update without a precise ID */
+                    .attr('type', 'checkbox')
+                    .addClass('editbox')
+                    .appendTo(motherdiv);
+
+
+        }
+
+        function loadlist() {
+
+            $.getJSON('/company/', function( listrecord ) {
+
+                $.each(listrecord, function(i, entry) {
+
+                    titlediv = document.createElement('div');
+                    $(titlediv).addClass('entry')
+                            .text(entry.name)
+                            .appendTo($("#container"));
+
+                    revlink = document.createElement('a');
+                    $(revlink).addClass('revlink')
+                            .attr('href', entry.Privacy_Policy)
+                            .attr('target', '_blank')
+                            .text('Privacy policy')
+                            .appendTo( $(titlediv) );
+
+                    append_text_editor( $(titlediv), 'Nation', entry.National_laws);
+                    append_boolean_editor( $(titlediv), 'Web Crawler', entry.Web_crawler);
+                    append_boolean_editor( $(titlediv), 'Safe Harbour', entry.Compliance_Safe_Harbour_Framework);
+                    append_boolean_editor( $(titlediv), 'Market research', entry.Market_research);
+                    append_boolean_editor( $(titlediv), 'Collects PII', entry.Collects_PII);
+                    append_boolean_editor( $(titlediv), 'Set Cookies', entry.Browser_cookies);
+                    append_boolean_editor( $(titlediv), 'Permit Opt-Out', entry.Optout);
+                    append_text_editor( $(titlediv), 'Data retention', entry.Data_retention_in_days.toString());
+                    append_boolean_editor( $(titlediv), 'Advertiser', entry.Advertising);
+                    append_boolean_editor( $(titlediv), 'DNT', entry.Supports_Do_Not_Track);
+
+                    /*
+                     'Collects_Non-PII',
+                     u'PII_Comm;ents',
+                     u'Privacy_Policy',
+                     u'Data_retention_in_days',
+                     u'Compliance_Safe_Harbour_Framework',
+                     u'TRUSTe_Privacy_Seal_certification',
+                     u'Profiling',
+                     u'Opt-out_comments',
+                     u'Optout',
+                     u'Parent_company',
+                     u'Browser_cookies',
+                     u'Disclosure_of_data_to_third_parties',
+                     u'Collects_Technical_Data',
+                     u'Web_analytics',
+                     u'Flash_cookies',
+                     u'Clients',
+                     u'Market_research',
+                     u'Prohibits_third_parties_from_using_data_for_unspecified_purposes',
+                     u'Advertising',
+                     u'Disclosure_of_data_to_third_parties_COMMENTS',
+                     u'Supports_Do_Not_Track',
+                     u'Web_crawler',
+                     u'Access_to_collected_data_by_user',
+                     'name',
+                     u'Data_collected_by_third_parties',
+                     u'Safeguards_to_prevent_the_full_identification_of_IP_addresses',
+                     'url',
+                     u'Web_Beacons',
+                     u'Collects_PII',
+                     u'National_laws']
+
+                     */
+
+                });
+            });
+        }
+
+    </script>
+
+</head>
+
+<body onload='loadlist()'>
+
+<h1>List of entries #</h1>
+
+<h2 id="subject" style="background-color: darkmagenta; text-align: center"></h2>
+
+<div id="container">
+</div>
+
+
+</body>
+</html>

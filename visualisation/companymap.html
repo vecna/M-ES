@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="description" content="Trackography is our open source project which illustrates which companies track us when we read the news online, as well as where our data travels to everytime we access a media website within a period of time.">
+  <meta name="viewport" content="width=device-width">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@info_activism">
+  <meta name="twitter:creator" content="@info_activism">
+  <meta property="og:url" content="http%3A//trackography.myshadow.org/">
+  <meta property="og:title" content="Trackography - which companies track us when we read the news online?">
+  <meta property="og:description" content="Trackography is our open source project which illustrates which companies track us when we read the news online, as well as where our data travels to everytime we access a media website within a period of time. ">
+  <meta property="og:image" content="img/example_image.jpg">
+	<meta name="twitter:url" content="http%3A//trackography.myshadow.org/">
+	<meta name='twitter:image' content='img/example_image.jpg'>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+	
+	<title>Trackography - Who tracks you online?</title>
+
+
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+	<script src="http://datamaps.github.io/scripts/datamaps.world.min.js"></script>
+
+	<!--
+	<script src="js/d3/d3.min.js"></script>
+	<script src="js/datamaps/topojson.v1.min.js"></script>
+	<script src="js/utils/jquery.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="components/animate.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<link rel="stylesheet" href="components/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="components/flags/css/flag-icon.css">
+	-->
+
+
+	<script>
+		function init() {
+			var map = new Datamap({
+				element: document.getElementById('main'),
+				fills: {
+					defaultFill: '#0085ff' // 'rgba(23,48,210,0.9)' //any hex, color name or rgb/rgba value
+				},
+				data: {
+					IRL: {
+						fillKey: 'LOW',
+						numberOfThings: 2002
+					},
+					USA: {
+						fillKey: 'MEDIUM',
+						numberOfThings: 10381
+					}
+				}
+			});
+		}
+	</script>
+
+</head>
+<body onload="init()">
+
+
+<div id="main" style="position: relative; width: 1200px; height: 600px;">
+
+</div>
+
+
+</body>
+
+
+
+
+

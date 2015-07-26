@@ -1,0 +1,41 @@
+{
+                "type" : "Polygon",
+                "arcs" : [
+                    [1617]
+                ],
+                "id" : 192,
+                "properties" : {
+                    "name" : "Singapore",
+                    "countryCode" : "SG",
+                    "capital" : "Singapore",
+                    "lat" : "1.2833333333333332",
+                    "lon" : "103.85"
+                }
+            },
+            
+  {type:"Polygon",properties:{name:"Germany"},id:"DEU",arcs:[[222]]}
+  {type:"Polygon",properties:{name:"Singapore"},id:"SGP",arcs:[[607]]}
+  
+  
+   {
+                "type" : "Polygon",
+                "arcs" : [
+                    [1287]
+                ],
+                "id" : 153,
+                "properties" : {
+                    "name" : "Mauritius",
+                    "countryCode" : "MU",
+                    "capital" : "Port Louis",
+                    "lat" : "-20.15",
+                    "lon" : "57.483333333333334"
+                }
+            },
+            
+            
+            {type:"Polygon",properties:{name:"Mauritius"},id:"MUS",arcs:[[1287]]}
+            
+            
+            
+            "([^\1"]+)"\s*:\s*
+            \1:

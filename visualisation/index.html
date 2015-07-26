@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="description" content="Trackography is our open source project which illustrates which companies track us when we read the news online, as well as where our data travels to everytime we access a media website within a period of time.">
+  <meta name="viewport" content="width=device-width">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@info_activism">
+  <meta name="twitter:creator" content="@info_activism">
+  <meta property="og:title" content="Trackography - which companies track us when we read the news online?">
+  <meta property="og:description" content="Trackography is our open source project which illustrates which companies track us when we read the news online, as well as where our data travels to everytime we access a media website within a period of time. ">
+  <meta property="og:image" content="img/example_image.jpg">
+	<meta name='twitter:image' content='img/example_image.jpg'>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+	
+	<title>Trackography - Who tracks you online?</title>
+
+	<!-- Scripts -->
+	<script src="js/utils/jquery.js"></script>
+	<script src="js/utils/underscore-min.js"></script>
+
+	<script src="js/d3/d3.min.js"></script>
+
+	<script src="js/datamaps/topojson.v1.min.js"></script>
+	<script src="js/datamaps/datamaps.world.min.js"></script>
+
+	<script src="js/data/worldbankcountries.json"></script>
+
+	<!-- Site Style -->
+	<link rel="stylesheet" type="text/css" href="components/animate.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+
+	<!-- Font Awesome! -->
+	<link rel="stylesheet" href="components/fontawesome/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="components/shepherd/css/shepherd-theme-arrows.css">
+	<script src="components/shepherd/shepherd.min.js"></script>
+
+	<link rel="stylesheet" href="components/flags/css/flag-icon.css">
+
+
+</head>
+<body>
+
+
+
+<div id="main">
+
+<!-- UNDERSCORE Templates -->
+<div class="infobox_wrapper overlay">
+	
+	<div class="menumenu">
+		<a href="https://donot.space" target="_blank" class="">
+			<img />
+		</a>
+
+		
+		<div class= "menulinklist animated lightSpeedIn">
+
+			<a href="https://bing.com" target="_blank">Bing, haha!</a>
+		</div>
+	</div>
+			
+	<div id='infobox' class ="infobox">
+
+		<script type="text/template" id="infobox_template">
+
+			<div class="instruction">
+				<i class="fa fa-comment"></i>
+				<%= message %>
+			</div>
+
+			<div id="redblueinfo" class="connectionsbox">
+				<div class="wanted animated flipInX" title="Through the blue arcs you can see your device's connection towards your selected media (if the connection travels outside your country).">
+					<strong><%= wanted %></strong> <i class="fa fa-newspaper-o"></i>
+					Media Sources
+				</div>
+				<div class = "unwanted animated flipInX" title="Through the red arcs you can see how many unintended connections are made by reading the news you have selected. Click on a country to view details.">
+					<strong><%= unwanted %></strong> <i class="fa fa-plug"></i>
+					Unintended connections
+				</div>
+			</div>
+
+		</script>
+	</div>
+
+</div>
+
+<div id='mediapane'  class="mediapane leftpane pane overlay">
+
+	<script type="text/template" id="media_pane_template">
+		<div class= 'paneinner'>
+		<div class= 'paneinnerinner'>
+			<div class="panetoggle overlay" title="Use this tab to select media websites that you read to discover who is tracking you while accessing them.">
+				<i class="fa fa-newspaper-o"></i>
+				Select Media (<span class="mediacount"><strong><%= mediacount %></strong></span>)
+			</div>
+			<div>
+				<h1><%= country %> in the XYZ files</h1>
+				
+				<% 
+				medialist = _.sortBy(medialist, function(media){
+					return media.url;
+				});
+
+				var global = _.filter(medialist, function(media) {
+					return media.category == 'Spying on Corporations';
+				});
+				var national = _.filter(medialist, function(media) {
+					return media.category == 'Spying on Political Leaders';
+				});
+				var local = _.filter(medialist, function(media) {
+					return media.type == 'local';
+				});
+				var blogs = _.filter(medialist, function(media) {
+					return media.type == 'blog';
+				});
+				%>
+
+
+
+				<div class="mediablock">
+					<h3 class="openfirst"> Political Espionage released so far: <%= global.length %></h3>
+					<div class="medialist">
+						<% _.each(global, function(media) { %>
+
+						<div class="target">
+							<b>Target:</b>
+							<br>
+							<%= media.target %>
+						</div>
+						<div id="media-<%= media.id %>" class = "media" data-id = "<%= media.id %>">
+							<%= media.revelations %>
+						</div>
+						<div class="link">
+							<a href="<%= media.sources %>">link</a>
+						</div>
+						<div class="media animated flipInX">
+							<b>Target:</b>
+							<%= media.target %>
+							<br>
+							<b>Attack type:</b>
+							<%= media.type %>
+							<b>Why ?</b>
+							<br>
+							<%= media.why %>
+							<br>
+							<b>Intellicence agencies:</b>
+							<%= media.ia %>
+						</div>
+						<% }); %>
+					</div>
+	      		</div>
+
+
+
+				<div class="mediablock">
+					<h3 class="openfirst"> Political Espionage released so far: <%= global.length %></h3>
+					<div class="medialist">
+						<% _.each(national, function(media) { %>
+
+						<div class="target">
+							<b>Target:</b>
+							<br>
+							<%= media.target %>
+						</div>
+						<div id="media-<%= media.id %>" class = "media" data-id = "<%= media.id %>">
+							<%= media.revelations %>
+						</div>
+						<div class="link">
+							<a href="<%= media.sources %>">link</a>
+						</div>
+						<div class="media animated flipInX">
+							<b>Target:</b>
+							<%= media.target %>
+							<br>
+							<b>Attack type:</b>
+							<%= media.type %>
+							<b>Why ?</b>
+							<br>
+							<%= media.why %>
+							<br>
+							<b>Intellicence agencies:</b>
+							<%= media.ia %>
+						</div>
+						<% }); %>
+					</div>
+				</div>
+
+			</div>
+		</div>	
+		</div>
+	</script>
+
+</div>
+
+
+<div id='countrypane'  class="countrypane leftpane pane overlay">
+
+	<script type="text/template" id="country_pane_template">
+		<div class='paneinner'>
+		<div class='paneinnerinner'>
+			<div class="panetoggle overlay" title="Change the country you access the internet from.">
+				<i class="fa fa-map-marker"></i>
+	 			Home: <%= country %>
+	 		</div>
+			<div>
+				<h1><%= country %></h1>
+
+				<% if (!enabled) { %>
+	    			There is no data for your country here is how you can help:
+
+				<% }else{ %>
+
+				<div class="mediatext">
+					This is the country that you access the internet from. Whether it is your home country or you are just currently located here, our data shows your connections to media websites and the third parties that track you when you are in this country.
+					<br>
+					Click on the media tab (after closing this one) to select the media websites that you read and to explore how third parties track you through those websites.
+					<br>
+					If you want to explore how people from other countries are tracked online, click on the button below:
+				</div>
+				<br>
+				
+				<% } %>
+				
+				<button id="reset">Select a new country</button>
+
+
+			</div>
+		</div>
+		</div>
+	</script>
+
+</div>
+
+
+
+<div id='infopane' class ="infopane rightpane pane overlay">
+	<script type="text/template" id="info_pane_template">
+		<div class='paneinner'>
+		<div class='paneinnerinner'>
+			<div class="panetoggle overlay" title="Information about the last country you clicked on.">
+				<i class="fa fa-info-circle"></i>
+				Info (<%= country %>)
+			</div>
+			
+				<h1>Data in <%= country %></h1>
+				
+				<% if(!companies || companies.length <=0){ %>
+				
+				<h3>Your data does not go through this country.</h3>
+				
+				<% }else{ %>
+				
+					<p>Here is a list of the companies (and their servers) that track you in this country.  Click on a company to learn more.</p>
+					
+					
+					<div class="mediaservers serverblock">
+						<% var mediaservers = _.filter(companies, function(server){return server.type=="media"}); %>
+						<% if (mediaservers.length > 0){ %>
+							<h3>You Visited</h3>
+							<p><small>The servers of the following media websites that you have selected are located in this country:</small></p>
+							<% _.each(_.groupBy(mediaservers, 'company'), function(serverlist, company) { %>
+								
+								<ul class= "medialist">
+								<% _.each(serverlist, function(server){ %>
+									<div class="media">
+										<i class="fa fa-newspaper-o"></i> <%= server.host %>
+									</div>
+								<% }); %>
+								</ul>
+							<% }); %>
+						<% } %>
+							
+					</div>
+					
+					
+					
+					<div class="storageservers serverblock">
+						<% var storageservers = _.filter(companies, function(server){return server.type=="datastored"}); %>
+						<% if(storageservers.length > 0){ %>
+							<h3>Companies that likely store your data in this country:</h3>
+							<p><small>The servers of the following companies that track you are located in this country:</small></p>
+							<% 
+							var i =0;
+							_.each(_.groupBy(storageservers, 'company'), function(serverlist, company) { 
+							i++;
+								%>
+								
+								
+								<div class="companyheader">
+									<div class="companyname">
+										<% if(company!="null"){ %>
+										
+										<table>
+											<%= companytemplate({'company':company}) %> 
+										</table>
+										<% }else{ %>
+											Unknown Company
+										<% } %>
+									</div>
+									<a class="clicktoggle servercount" data-target="#storageservers-<%= i %>">
+										(<%= serverlist.length %> servers) 
+									</a>
+									
+								</div>
+								
+								<ul id ="storageservers-<%= i %>" class= "serverlist">
+								<% _.each(serverlist, function(server){ %>
+									<li><%= server.host %> (from <%= server.media.replace(/^www./,'') %>)
+									</li>
+								<% }); %>
+								</ul>
+							<% }); %>
+						<% } %>
+					</div>
+					
+					
+					
+					<div class="transitservers serverblock">
+						<% var transitservers = _.filter(companies, function(server){return server.type=="transit"}); %>
+						<% if (transitservers.length > 0){ %>
+							<h3> Your data goes through the network infrastructure of this country which is connected to the servers of the following companies:</h3>
+							<p><small>Data tracked by the following companies passes through this country:</small></p>
+							<% 
+							_.each(_.groupBy(transitservers, 'company'), function(serverlist, company) { 
+							i++;
+							%>
+								
+								<div class="companyheader">
+									<div class="companyname">
+										<% if(company!="null"){ %>
+											<table>
+											<%= companytemplate({'company':company}) %>
+											</table>
+											
+										<% }else{ %>
+											Unknown Company
+										<% } %>
+									</div>
+									<a class="clicktoggle servercount" data-target="#transitservers-<%= i %>">
+										(<%= serverlist.length %> servers)
+									</a>
+									
+								</div>
+								
+								<ul id ="transitservers-<%= i %>" class= "serverlist">
+								<% _.each(serverlist, function(server){ %>
+									<li><%= server.host %> (from <%= server.media.replace(/^www./,'') %>)
+									</li>
+								<% }); %>
+								</ul>
+							<% }); %>
+						<% } %>
+					</div>
+					
+				<% } %>
+		</div>			
+		</div>
+	</script>
+</div>
+
+
+
+
+<div id='companypane' class ="companypane rightpane pane overlay">
+	<script type="text/template" id="company_pane_template">
+		<div class='paneinner'>
+		<div class='paneinnerinner'>
+			<h1>Companies Tracking You</h1>
+			<div class="explanation">
+				Through the media websites you have selected, the following companies can have access to your data (such as your IP address and browsing habits):
+				Click on the name of a company to learn more about it. <a href="#legendd"> click to see the legend</a>
+			</div>
+
+
+
+				<%
+				var companytotal = 0;
+				_.each(media_list, function(media) { %>
+					<hr>
+					<div class = "mediaa animated flipInX" data-id = "<%= media.id %>">
+					 <h2><%= media.url.replace(/^www./,'') %></h2>
+					 <table>
+
+					 <thead>
+					 	<th width="40%"></th>
+					 	<th>
+					 		<span class="click_to_legend" data-target="#National_laws">
+					 			National Laws
+					 		</span>
+					 	</th>
+					 	<th>
+					 		<span class="click_to_legend" data-target="#Profiling">
+					 			Profiling
+					 		</span>
+					 	</th>
+					 	<th>
+					 	<span class="click_to_legend" data-target="#Data_retention_in_days">
+					 			Data Retention
+					 		</span>
+
+					 	</th>
+					 	<th>
+					 		<span class="click_to_legend" data-target="#Data_collected_by_third_parties">
+					 			Third Parties
+					 		</span>
+					 	</th>
+					 	<th>
+					 	<span class="click_to_legend" data-target="#Supports_Do_Not_Track">
+					 			Supports DNT
+					 		</span>
+
+					 	</th>
+					 <thead>
+
+
+
+						 <% _.each(media.companies, function(company) { %>
+								<%= companytemplate({'company':company}) %>
+							
+						 <% 
+						companytotal++;
+						 }); %>
+					 </table>
+					 
+					</div>
+				<% }); %>
+				
+
+
+
+
+
+
+					<h4 id="legendd">Legend:</h4>
+			<div class ="explanation">
+					
+				<p id="do-not-track">
+
+					<h3>Do Not Track (DNT)</h3> Do Not Track (DNT) is a HTTP header field that requests a web application to disable its tracking or cross-site user tracking of an individual user. The Federal Trade Commission has asked companies to honor this command, but most of them ignore it.
+	                
+              	</p>
+              	<p id="National_laws">
+              		<h3>National Laws</h3>
+	               The national laws and jurisdiction that companies have to comply with.
+	            </p>
+	            <p id="Profiling">
+	            	<h3>Profiling</h3>
+	            	 Profiling is the process of constructing a profile, which is a visual display of data associated with a specific individual or group of individuals. Such profiles are generated by computerised data analysis. 
+	                
+	            </p>
+	            <p id="Data_retention_in_days">
+	            	<h3>Data Retention</h3>
+	            	How long the company claims to store your data for.
+	                
+	            </p>
+	            <p id="Data_collected_by_third_parties">
+	            	<h3>Data Collected by Third Parties</h3>
+	             	Do third parties you have not necessarily consented to collect your data?
+
+	            </p>
+
+			</div>
+			<hr>
+
+
+
+
+
+
+
+
+
+
+
+				
+				
+			<div class="panetoggle overlay ">
+				<span class=" animated flipInX" title="Information on the companies tracking you based on your media selections">
+					<i class="fa fa-money"></i>
+					Companies (<strong><%= companytotal %></strong>)
+				</span>
+			</div>
+
+
+
+
+
+
+
+
+
+		</div>	
+		</div>
+	</script>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id='singlecompanypane' class ="singlecompanypane rightpane pane overlay">
+	<script type="text/template" id="single_company_pane_template">
+		<div class='paneinner'>
+		<div class='paneinnerinner'>
+			<h1><%= company.name %></h1>
+			<h2>Information:</h2>
+
+
+		<!--	"Access_to_collected_data_by_user": "Y", -->
+
+			<% if(company.Collects_PII){ %>
+
+				<h3><%= company.name %> collects PII</h3>
+
+				PII: Personally Identifiable Information (PII) is data which can be used on its own or with other data to identify, contact or locate an individual. Examples of such information include an individual's name, postal address, telephone number, email address and personal pictures. 
+			<% } %>
+
+
+
+
+			<% if(company["Collects_Non-PII"]){ %>
+
+				<h3><%= company.name %> collects Non-PII</h3>
+
+				Non-Personally Identifiable Information (non-PII) is data that might correspond to a particular individual, account or profile, but which is not necessarily sufficient to identify, contact or locate the individual to whom such data pertains. 
+			<% } %>
+
+
+
+
+			<% if(company.Collects_Technical_Data){ %>
+
+				<h3><%= company.name %> collects Technical Data</h3>
+
+				Technical data is information which relates to an individual's device and online activity, such as a device's operating system, browser type, screen resolution and geographic location based on its IP address.
+			<% } %>
+
+
+
+
+			<% if(company.Clients){ %>
+
+				<h3><%= company.name %> Clients</h3>
+
+				<%= company.Clients %>
+			<% } %>
+
+
+
+
+			<% if(company.Data_collected_by_third_parties){ %>
+
+				<h3><%= company.name %> 3rd party data</h3>
+
+				Data is collected by third parties
+			<% } %>
+
+
+
+
+			<h3><%= company.name %> data retention</h3>
+			<% if(company.Data_retention_in_days==null||company.Data_retention_in_days=="Not available"){ %>
+
+				
+				No information available
+				
+			<% }else if(company.Data_retention_in_days){ %>
+				<%= company.Data_retention_in_days %>
+			<% } %>
+
+
+
+			<% if(company.Disclosure_of_data_to_third_parties){ %>
+
+				<h3><%= company.name %> 3rd party data disclosure</h3>
+
+			no description			
+
+		<%= company["Disclosure_of_data_to_third_parties_-_comments"] %>
+
+			<% } %>
+
+
+
+
+			<% if(company["Opt-out"]){ %>
+
+				<h3><%= company.name %> Opt out</h3>
+
+				Opt-out refers to several methods through which individuals can avoid being tracked through various techniques and technologies, such as browser cookies, that advertising companies use to collect information about an individual's web-browsing behaviour and to send unsolicited product or service information. 
+
+				<% if(company["Opt-out_comments"]){ %>
+					<%= company["Opt-out_comments"] %>
+				<% } %>
+
+			<% } %>
+
+
+
+			<% if(company.Safeguards_to_prevent_the_full_identification_of_IP_addresses){ %>
+
+				<h3><%= company.name %> Safeguards</h3>
+
+				Some companies have introduced safeguards that prevent the identification of the full IP address of users by clearing the last bits of the IP address numbers.
+			<% } %>
+
+
+
+			<% if(company.Websites){ %>
+
+				<h3><%= company.name %> Websites</h3>
+				<%= company.Websites %>
+				
+			<% } %>
+
+
+<!--
+   
+
+    "PII_Comments": null, 
+    "Parent_company": null, 
+    "Prohibits_third_parties_from_using_data_for_unspecified_purposes": "N", 
+    "Websites": "http://company.yandex.com/"
+		-->
+			
+		
+			<div class="panetoggle overlay ">
+				<span class=" animated flipInX">
+					<i class="fa fa-money"></i>
+					<%= company.name %>
+				</span>
+			</div>
+		</div>	
+		</div>
+	</script>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/template" id="company_template">
+		  
+	<% 
+	var this_company = _.find(allcompanies, function(comp){
+		return company.toLowerCase() == comp.name.toLowerCase();
+	}) 
+	if(this_company){
+	%>
+	<tr>
+
+			<td width="40%"><%= this_company.name %> <a data-company="<%= this_company.name %>" class="triggerCompany"><i class="fa fa-info-circle"></i> </a></td>
+			
+			<td>
+				<% if(this_company.National_laws){ %>
+					<span class="click_to_legend" data-target="#National_laws">
+					<span class="flag-icon flag-icon-<%= this_company.National_laws.toLowerCase() %>"></span>
+					</span>
+				<% }else{ %>
+					<i data-target="#National_laws" title="Info not available" class="fa fa-question bad click_to_legend">
+				<% } %>
+			</td>
+			<td>
+			
+				<% if(this_company.Profiling == true){ %>
+					<i data-target="#Profiling" title="Creates a profile about you" class="fa fa-check bad click_to_legend"></i>
+				<% }else if(this_company.Profiling == false){ %>
+					<i data-target="#Profiling" title="Does not create a profile about you" class="fa fa-close good click_to_legend"></i>
+				<% }else{ %>
+					<i data-target="#Profiling" title="Information not available" class="fa fa-question bad click_to_legend">
+				<% } %>
+			</td>
+			<td class="datadays">
+				<% if(this_company.Data_retention_in_days!="Not available"){ %>
+					<span class="click_to_legend" data-target="#Data_retention_in_days">
+						<span class="bad"><%= this_company.Data_retention_in_days %>d</span>
+					</span>
+				<% }else{ %>
+					<i data-target="#Data_retention_in_days" title="Information not available" class="fa fa-question bad click_to_legend">
+				<% } %>
+			</td>
+			<td>
+
+				<% if(this_company.Data_collected_by_third_parties == true){ %>
+					<i data-target="#Data_collected_by_third_parties" title="Data is collected by third parties" class="fa fa-check bad click_to_legend"></i>
+				<% }else if(this_company.Data_collected_by_third_parties == false){ %>
+					<i data-target="#Data_collected_by_third_parties" title="Data is not collected by third parties" class="fa fa-close good click_to_legend"></i>
+				<% }else{ %>
+					<i data-target="#Data_collected_by_third_parties" title="Information is not available" class="fa fa-question bad click_to_legend">
+				<% } %>
+			</td>
+			<td>
+				<% if(this_company["Supports_Do_Not_Track"]==true){ %>
+					<i data-target="#do-not-track" title="Supports Do Not Track" class="fa fa-check good click_to_legend"></i>
+				<% }else if(this_company["Supports_Do_Not_Track"]==false){ %>
+					<i data-target="#do-not-track" title="Does not support Do Not Track" class="fa fa-close bad click_to_legend"></i>
+				<% }else{ %>
+					<i data-target="#do-not-track" title="Information is not available" class="fa fa-question bad click_to_legend">
+				<% } %>
+			</td>
+			<!--
+			<td>
+				<a href=<%= this_company.Privacy_policy %> target="_blank"  title="<%= this_company.name %> Privacy Policy">
+					<i class="fa fa-lock"></i>
+				</a>
+			</td>
+			-->
+		
+	
+	</tr>
+	<% }else{ %>
+		
+		<tr>
+			<td width="40%"><%= company %></td>
+			<td class="disabled"></td>
+			<td class="disabled"></td>
+			<td class="disabled"></td>
+			<td class="disabled"></td>
+			<td class="disabled"></td>
+		</tr>
+	<% } %>
+</script>
+
+
+
+<div id='legend' class="animated bounceInDown overlay">
+	<div class='legendinner'>
+		<span class='colorswath home' title="The country you access the internet from"></span> Your Country
+		<span class='colorswath destination' title="The countries hosting the servers of your selected media websites. You intended this connection"></span> Country hosting media website(s)
+		<span class='colorswath transit' title="To access your selected media websites, your connection passes through this country."></span> Country owning network infractructure 
+		<span class='colorswath baddestination' title="Countries which likely store your data because companies that track your online activity have servers located there."></span> Country hosting tracking service(s)
+	</div>
+</div>
+
+
+
+
+<div id="container1" class="animated fadeInDown" style="position: relative;height:100%;width:100%;"></div>
+
+
+<!-- Application JS -->
+<script src="js/functions.js"></script>
+<script src="js/app.js"></script>
+
+</div>
+
+<div id="phone">
+<h1>This Visualisation cannot work on a screen this small. Please come back on a larger screen!</h1>
+
+</div>
+
+
+</body>
+
+</html>

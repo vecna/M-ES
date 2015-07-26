@@ -1,0 +1,767 @@
+
+@font-face {
+  font-family: 'Museo Sans';
+  src: url('../font/MuseoSans_500-webfont.eot');
+  src: url('../font/MuseoSans_500-webfont.eot?#iefix') format('embedded-opentype'), url('../font/MuseoSans_500-webfont.woff') format('woff'), url('../font/MuseoSans_500-webfont.ttf') format('truetype'), url('../font/MuseoSans_500-webfont.svg#museo_sans_500regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/*
+ * Web Fonts from fontspring.com
+ *
+ * All OpenType features and all extended glyphs have been removed.
+ * Fully installable fonts can be purchased at http://www.fontspring.com
+ *
+ * The fonts included in this stylesheet are subject to the End User License you purchased
+ * from Fontspring. The fonts are protected under domestic and international trademark and 
+ * copyright law. You are prohibited from modifying, reverse engineering, duplicating, or
+ * distributing this font software.
+ *
+ * (c) 2010-2013 Fontspring
+ *
+ *
+ *
+ *
+ * The fonts included are copyrighted by the vendor listed below.
+ *
+ * Vendor:      exljbris Font Foundry
+ * License URL: http://www.fontspring.com/fflicense/exljbris
+ *
+ *
+ */
+@font-face {
+  font-family: 'Museo Slab';
+  src: url('../font/Museo_Slab_500_2-webfont.eot');
+  src: url('../font/Museo_Slab_500_2-webfont.eot?#iefix') format('embedded-opentype'), url('../font/Museo_Slab_500_2-webfont.woff') format('woff'), url('../font/Museo_Slab_500_2-webfont.ttf') format('truetype'), url('../font/Museo_Slab_500_2-webfont.svg#museo_slab500') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/*
+ * Web Fonts from fontspring.com
+ *
+ * All OpenType features and all extended glyphs have been removed.
+ * Fully installable fonts can be purchased at http://www.fontspring.com
+ *
+ * The fonts included in this stylesheet are subject to the End User License you purchased
+ * from Fontspring. The fonts are protected under domestic and international trademark and 
+ * copyright law. You are prohibited from modifying, reverse engineering, duplicating, or
+ * distributing this font software.
+ *
+ * (c) 2010-2013 Fontspring
+ *
+ *
+ *
+ *
+ * The fonts included are copyrighted by the vendor listed below.
+ *
+ * Vendor:      Pintassilgo Prints
+ * License URL: http://www.fontspring.com/fflicense/pintassilgo-prints
+ *
+ *
+ */
+@font-face {
+  font-family: 'Populaire Regular';
+  src: url('../font/Populaire-webfont.eot');
+  src: url('../font/Populaire-webfont.eot?#iefix') format('embedded-opentype'), url('../font/Populaire-webfont.woff') format('woff'), url('../font/Populaire-webfont.ttf') format('truetype'), url('../font/Populaire-webfont.svg#PopulaireRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+
+
+
+
+
+
+html,body, #main{
+	width:100%;
+	height:100%;
+	margin:0;
+	padding:0;
+	font-family: "Museo Sans", Sans;
+	font-size:12px;
+
+}
+
+body{
+		background-image: url(img/loading.gif);
+	background-position: center center;
+	background-repeat: none;
+}
+
+
+#phone {
+    display:none;
+    background-color:black;
+    height:100%;
+}
+
+/* if screen size gets wider than 1024 */
+
+@media screen and (max-width:700px){
+    #main {
+        display:none;
+    }
+
+    #phone{
+    	display:block;
+    }
+
+    .shepherd-step{
+    	display:none !important;
+    }
+}
+
+h1, h2, h3, h4 {
+color: white;
+padding: .3em;
+font-weight:normal;
+font-family: 'Populaire Regular', 'Museo Slab', Georgia, Times, serif;
+  -webkit-font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "salt" 1;
+  -moz-font-feature-settings: "liga=1, dlig=1", "calt=1", "salt=1";
+  -ms-font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "salt" 1;
+  -o-font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "salt" 1;
+  font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "salt" 1;
+ text-shadow:1px 1px 1px rgba(0,0,0,.5);
+}
+h2, h3, h4 {
+font-family: "Museo Slab", Sans;
+}
+
+h1 { font-size: 3em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+h4 { font-size: 1em; }
+h5 { font-size: 0.83em; }
+h6 { font-size: 0.75em; }
+
+
+.companyname{
+font-family: "Museo Slab", Sans;
+display:inline;
+}
+
+a {
+    color: rgb(66, 139, 202);
+    text-decoration: none;
+    text-shadow:1px 1px 0px rgba(255,255,255,.3);
+    cursor:pointer;
+}
+a:hover, a:focus {
+    color: rgb(42, 100, 150);
+    text-decoration: underline;
+}
+
+
+
+
+table {
+  border-collapse: collapse;
+  width:100%;
+  table-layout: fixed;
+}
+td, th {
+  padding: 0.5rem;
+  text-align: left;
+  overflow:hidden;
+}
+
+
+td{
+background-color:rgba(255,255,255,.3);
+	}
+	
+td.disabled{
+	background-color:rgba(100,100,100,.3);
+}
+
+.good{
+	color:green;
+}
+
+.bad{
+	color:red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.menumenu{ background-color:black; text-align:left; border-bottom:1px solid #aaa;}
+
+.menumenu h1 {
+	font-size: 2em;
+	margin: 0;
+	padding: 0;
+	padding-left: .5em;
+	padding-right: .6em;
+	text-align: left;
+	display: inline;
+	background-color: rgb(193, 39, 45);
+	margin-left: -.7em;
+	position:relative;
+	z-index:2;
+	
+	 -moz-box-shadow:    inset 0px -2px 6px -2px #000000;
+   -webkit-box-shadow: inset 0px -2px 6px -2px #000000;
+   box-shadow:         inset 0px -2px 6px -2px #000000;
+}
+			
+.menulinklist{
+	display:inline;
+	float:right;
+	padding-top:.5em;
+	font-family:"Museo Slab";
+	}
+.menulinklist a{
+	color:white;
+	opacity:.7;
+	background-color:rgba(255,255,255,.3);
+	margin-left:.5em;
+	padding:.2em;
+}
+.beta {
+color: white;
+position: absolute;
+margin-left: -1em;
+text-shadow: 1px 1px 1px black;
+top: .5em;
+z-index:6;
+}
+
+.shadowlogo {
+height: 1.3em;
+margin-left: 1em;
+opacity: .8;
+position:relative;
+z-index:6;
+}
+
+
+
+
+.actions span{
+	cursor:pointer;
+	opacity:.6;
+	background-color:rgba(0,0,0,.2);
+	border-radius:.4em;
+	padding:.2em;
+	margin-right:.3em;
+}
+.actions span:hover{
+opacity:1;
+}
+
+.selected {
+	color: rgba(0,120,0,.5);
+	font-weight: bold;
+	background-color: inherit;
+	border-radius: .4em;
+	padding: .2em;
+	border-color: rgba(0,120,0,.5);
+}
+
+
+
+
+
+
+.datamap{
+	background-color:#efefef;
+	background-image:url("img/back_patern.png");
+}
+
+
+
+.pane{
+	background-color:white;
+	position:fixed;
+	width: 40%;
+	height: 100%;
+	z-index: 3000;
+
+
+  -webkit-transition:all .3s ease-in-out;
+  -moz-transition:all .3s ease-in-out;
+  -o-transition:all .3s ease-in-out;
+  transition:all .3s ease-in-out;
+
+}
+
+.pane.open{
+	opacity:.8;
+}
+
+.pane.open:hover{
+	opacity:.95;
+}
+
+.paneinner{
+	height:100%;
+
+	overflow-y:scroll;
+}
+.paneinnerinner{
+	padding-left:2em;
+	padding-right:2em;
+	padding-top:7em;
+	padding-bottom:5em;
+}
+
+
+
+
+
+
+
+
+
+
+
+.mediablock h3{cursor:pointer;}
+.mediablock h3:before{content:"\25B6";}
+.mediablock.open h3:before{content:"\25BC";}
+
+
+.media{
+	width: 85%;
+    overflow: visible;
+    border: 1px solid grey;
+    border-radius: .5em;
+    background-color: #efefef;
+    /* padding: .5em; */
+    float: left;
+    /* cursor: pointer; */
+    font-size: .95em;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    padding: 1%;
+}
+
+.link{
+	width: 5%;
+	overflow: hidden;
+	border: 1px solid gray;
+	border-radius: .5em;
+	background-color: #efefef;
+	float: left;
+	font-size: .95em;
+	margin-right: 1%;
+	margin-bottom: 1%;
+	padding: 1%;
+}
+
+.target {
+	width: 90%;
+	margin-right: 1%;
+	margin-bottom: 1%;
+	cursor: pointer;
+	padding: 1%;
+	color: #6c1619;
+}
+
+.mediatext {
+	border: 1px solid grey;
+	border-radius: .5em;
+	background-color: #efefef;
+	padding: 2%;
+	font-size: 1.15em;
+}
+
+.testintro {
+	border: 1px solid blue;
+	border-radius: .3em;
+	font-size: 1.2em;
+	vertical-align: middle;
+	margin-left: 3%;
+	margin-right: 3%;
+	padding: 1%;
+}
+
+
+.media:hover{
+	background-color:#ddd;
+}
+
+.media.selected{
+	background-color:teal;
+	color: #ffffff;
+}
+
+
+.pane.open{
+	z-index:3001;
+}
+
+.leftpane{
+	left:-40%;
+	border-right:2px solid white;
+}
+
+.rightpane{
+	right:-40%;
+	border-left:2px solid white;
+}
+
+.leftpane.open{left:0;}
+
+.rightpane.open{right:0;}
+
+.explanation {
+	/* has the same property of mediatext just without background */
+	font-size: 1.15em;
+}
+
+.panetoggle{
+	font-family: "Museo Slab", Sans;
+	position:absolute;
+	background-color: white;
+	cursor: pointer;
+	border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    border-top: 2px solid white;
+    padding: 10px;
+    right: -150px;
+    text-align: right;
+    width: 130px;
+    z-index:-1;
+    font-size:.9em;
+    color:white;
+    text-shadow:1px 1px 1px black;
+}
+
+.rightpane .panetoggle{left: -154px;border-right: 2px solid transparent;border-left: 2px solid white;text-align: left;}
+
+
+
+
+
+.countrypane .panetoggle{top: 10em;}
+
+.mediapane .panetoggle{top: 15em;}
+
+.infopane .panetoggle{top: 18em;}
+
+.companypane .panetoggle{top: 22em;}
+
+.singlecompanypane .panetoggle{bottom: 10em;}
+
+
+
+.panetoggle:before, .panetoggle:after{
+	padding-left:1em;
+	padding-right:1em;
+	opacity:.5;
+}
+
+.rightpane .panetoggle:before{content: '\25C0';}
+
+.leftpane .panetoggle:after{content:'\25B6';}
+
+
+.leftpane.open  .panetoggle:after{content: '\25C0';}
+
+.rightpane.open .panetoggle:before{content:'\25B6';}
+
+
+
+
+
+.countrypane, .countrypane .panetoggle{
+	background-color:rgba(80,120,80,1);
+}
+
+.mediapane, .mediapane .panetoggle{
+	background-color:rgba(120, 120, 255, 1);
+}
+
+.companypane, .companypane .panetoggle{
+	background-color:#e69e8f;
+}
+
+.infopane, .infopane .panetoggle{
+	background-color:#e69e8f;
+}
+
+.singlecompanypane, .singlecompanypane .panetoggle{
+	background-color:#e69e8f;
+}
+
+
+
+
+.wanted{
+color:blue;
+}
+
+.unwanted{
+color:red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.overlay{
+	box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.5);
+}
+
+
+
+.infobox_wrapper{
+	width:100%;
+	position:fixed;
+	z-index:3101;
+	background-color:white;
+
+
+}
+
+#infobox{
+	width: 100%;
+	margin:0 auto;
+
+
+	background-color:white;
+	text-align: center;
+}
+
+#legend{
+	width:100%;
+	position:fixed;
+	z-index:3101;
+	background-color:white;
+	bottom:0;
+}
+
+.legendinner{
+	width: 100%;
+	margin:0 auto;
+	background-color:white;
+	text-align: center;
+	padding: .5em;
+}
+
+.colorswath{
+	display:inline-block;
+	height:1em;
+	width:1em;
+	background-color:red;
+}
+
+.colorswath.home{ background-color:rgba(0,120,0,.5);}
+
+.colorswath.destination{background-color:rgba(0, 0, 255, .5);}
+
+.colorswath.transit{background-color:rgba(80, 9, 80, .5);}
+
+.colorswath.baddestination{background-color:rgba(255, 0, 0, .5);}
+
+.connectionsbox{
+font-family: "Museo Slab", Sans;
+width:100%;
+background-color: #aaa;
+font-weight: bold;
+padding: .5em;
+}
+
+.wanted{
+width:50%;
+display:inline;
+padding:1em;
+}
+
+.unwanted{
+width:50%;
+display:inline;
+padding:1em;
+
+}
+
+.instruction{
+		border-top:1px solid #aaa;
+		padding:1em;
+
+}
+
+
+
+.mediablock{
+	overflow:hidden;
+	}
+
+
+
+
+
+.serverlist{
+	font-size:.8em;
+	}
+.serverlist li{
+	
+}
+
+
+.serverblock{padding:1em;}
+.mediaservers{
+	background-color:rgba(0, 0, 255, .3);
+}
+.transitservers{
+	background-color:rgba(80, 9, 80, .3);
+}
+.storageservers{
+	background-color:rgba(255, 0, 0, .3);
+}
+
+
+.fa-4x{
+	float:left;
+	margin-right:15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.wanted, .unwanted {
+text-shadow: 1px 1px 1px white;
+background-color: #bbb;
+}
+
+
+.wanted strong, .unwanted strong {
+box-shadow: 1px 1px 1px #666;
+background-color: #ddd;
+border-radius: 1em;
+width: 2em;
+qew: 2em;
+display: inline-block;
+padding-top: .4em;
+padding-bottom: .5em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+button {
+background: #c1272d;
+display: inline-block;
+color: #fcfcfc;
+text-align: center;
+font-family: 'Populaire Regular', 'Museo Slab', Georgia, Times, serif;
+-webkit-font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "salt" 1;
+-moz-font-feature-settings: "liga=1, dlig=1", "calt=1", "salt=1";
+-ms-font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "salt" 1;
+-o-font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "salt" 1;
+font-feature-settings: "liga" 1, "dlig" 1, "calt" 1, "salt" 1;
+white-space: nowrap;
+font-size: 24px;
+font-size: 1.4em;
+padding: 10px 30px;
+padding: 1rem 30px;
+padding: 10px 3rem;
+padding: 1rem 3rem;
+-webkit-box-shadow: 0 3px 0 #6c1619;
+-moz-box-shadow: 0 3px 0 #6c1619;
+box-shadow: 0 3px 0 #6c1619;
+text-shadow: none;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-ms-border-radius: 5px;
+-o-border-radius: 5px;
+border-radius: 5px;
+cursor:pointer;
+}
+
+
+
+
+.shepherd-element{
+	z-index:99999999;
+	max-width:40em !important;
+}
+
+.shepherd-element header {
+background: orange !important;
+}
+
+.shepherd-element-attached-top .shepherd-content:before{
+border-bottom-color: orange !important;
+
+}
+
+
+
+.click_to_legend{
+	cursor:help;
+}
+
+#infopane .media{
+	float:none;
+	width:auto;
+	cursor:default;
+}
+
+th{
+	/* Safari */
+-webkit-transform: rotate(-45deg);
+
+/* Firefox */
+-moz-transform: rotate(-45deg);
+
+/* IE */
+-ms-transform: rotate(-45deg);
+
+/* Opera */
+-o-transform: rotate(-45deg);
+
+/* Internet Explorer */
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
+overflow: visible;
+white-space: nowrap;
+font-size:.8em;
+color:white;
+}
+
+.datadays{
+	font-size:.8em;
+}
