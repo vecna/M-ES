@@ -36,8 +36,7 @@ class Freegeoip(object):
     @classmethod
     def getfile(cls, fname):
 
-        filfullpa = os.path.join('/home/qq/T/trackmapbackend/readonlydata', fname)
-        return file(filfullpa)
+        return file(fname)
 
     @classmethod
     def name_to_country_3lc(cls, name, absolute=False):
@@ -291,7 +290,6 @@ class AssociatedDocuments(EoloHandler, DataSource):
         # print three_lc, detail
 
         retlist = []
-        print "to be sure", len(DataSource.country_list)
         for docinfo in DataSource.immutable_source:
             if three_lc in docinfo['Countries']:
                 retlist.append(docinfo)
