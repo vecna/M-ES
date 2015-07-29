@@ -106,13 +106,13 @@
 				});
 
 				var global = _.filter(medialist, function(media) {
-					return media.category == 'Spying on Corporations';
+					return media.category == 'Corporations';
 				});
 				var national = _.filter(medialist, function(media) {
-					return media.category == 'Spying on Political Leaders';
+					return media.category == 'Politicians';
 				});
 				var local = _.filter(medialist, function(media) {
-					return media.category == 'Collaborations';
+					return media.category == 'CollaborationsIAC';
 				});
 				/*
 				var blogs = _.filter(medialist, function(media) {
@@ -129,23 +129,16 @@
 
 						<div class="linehr"> <%= media.category %> </div>
 
-						<% if (media.target)  { %>
 						<div class="target">
-							<%= media.target %>
-						</div>
-						<% } else { %>
-						<i>"nop!"</i>
-						<% } %>
-						<div id="media-<%= media.id %>" class = "media" data-id = "<%= media.id %>">
 							<%= media.revelations %>
+						</div>
+						<div id="media-<%= media.id %>" class = "media" data-id = "<%= media.id %>">
+							<b>Target: </b><%= media.target %>
 						</div>
 						<div class="link">
 							<a href="<%= media.sources %>" target="_blank">link</a>
 						</div>
 						<div class="media animated flipInX">
-							<b>Target:</b>
-							<%= media.target %>
-							<br>
 							<b>Attack type:</b>
 							<%= media.type %>
 							<br>
@@ -170,20 +163,20 @@
 
 						<% if (media.target)  { %>
 						<div class="target">
-							<%= media.target %>
+							<%= media.revelations %>
 						</div>
 						<% } else { %>
 						<i>"nop!"</i>
 						<% } %>
 
 						<div id="media-<%= media.id %>" class = "media" data-id = "<%= media.id %>">
-							<%= media.revelations %>
+							<b>Target:</b>
+							<%= media.target %>
 						</div>
 						<div class="link">
 							<a href="<%= media.sources %>" target="_blank">link</a>
 						</div>
 						<div class="media animated flipInX">
-                            <b>Target:</b>
                             <%= media.target %>
                             <br>
                             <b>Attack type:</b>

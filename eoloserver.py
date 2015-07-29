@@ -238,15 +238,15 @@ class DataSource(object):
     def __init__(self):
 
         id_number_matrix = {
-            'Spying on Political Leaders' : '1',
-            'Spying on Corporations' : '2',
-            'Collaborations' : '3',
+            'Politicians' : '1',
+            'Corporations' : '2',
+            'CollaborationIAC' : '3',
         }
         if not DataSource.immutable_source:
 
             for fname, fid in id_number_matrix.iteritems():
 
-                with file('%s.csv' % fname) as fp:
+                with file('../Project/%s.csv' % fname) as fp:
 
                     csvlist = fp.read().split('\n')
                     csvobj = csv.reader(csvlist)
